@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+# Permissions the official Pages deployment needs.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one Pages deployment at a time; let an in-progress one finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          # Node 24 (npm 11) matches the dev environment the lockfile is
+          # generated and verified against. npm 10 (Node 22) mis-handles an
+          # optional peer dep (crossws) and fails `npm ci` on an in-sync lock.
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # `nuxt generate` sets NODE_ENV=production, which switches nuxt.config to
+      # the /elevation-marketing/ baseURL. Set explicitly too as a safeguard.
+      # The contact-form Web3Forms key is selected automatically in
+      # nuxt.config.ts by deploy target — this build resolves to the GitHub Pages
+      # preview key. No NUXT_PUBLIC_WEB3FORMS_KEY secret needed; setting one here
+      # would override that selection.
+      - name: Generate static site
+        run: npm run generate
+        env:
+          NODE_ENV: production
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .output/public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

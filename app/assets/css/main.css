@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Theme tokens (CSS-first config — replaces the old tailwind.config.ts).
+   Font families prepend the brand fonts to Tailwind's default sans stack so the
+   `font-sans` / `font-display` utilities fall back gracefully. */
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --color-ink: #1d1d1f;
+  --color-brand-body: #f3f3f3;
+  --color-brand-dark-blue: #01437d;
+  --color-brand-light-blue: #3d7db1;
+  --color-brand-footer-border: #ffffff;
+  --color-muted: #404040;
+  --color-line: #f7f7f7;
+
+  --radius-pill: 55px;
+  --radius-card: 2rem;
+}
+
+/* Tailwind only ships flex-1; add flex-2 so `lg:flex-2` resolves. */
+@utility flex-2 {
+  flex: 2 2 0%;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans text-ink antialiased bg-brand-body;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+}
