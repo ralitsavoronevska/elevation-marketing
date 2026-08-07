@@ -1,0 +1,12 @@
+Copyright © 2026 Elevation Marketing. All rights reserved.
+
+This repository and its contents — including all source code, designs, and
+assets — are the proprietary and confidential property of Elevation Marketing.
+
+No part of this repository may be reproduced, copied, modified, distributed,
+published, or used in any form or by any means without the express prior
+written permission of Elevation Marketing.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
