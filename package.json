@@ -31,7 +31,6 @@
   },
   "overrides": {
     "esbuild": "^0.28.1",
-    "@unhead/vue": "^3.3.1",
     "nostics": "1.2.0"
   },
   "devDependencies": {
@@ -44,11 +43,10 @@
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.2",
     "@types/node": "^26.0.0",
-    "nuxt": "^4.4.8",
+    "nuxt": "^4.6.2",
     "nuxt-og-image": "^6.7.0",
     "nuxt-schema-org": "^6.2.8",
     "tailwindcss": "^4.3.2",
-    "vue": "^3.4.3",
-    "vue-router": "^4.2.5"
+    "vue": "^3.5.44"
   }
 }
